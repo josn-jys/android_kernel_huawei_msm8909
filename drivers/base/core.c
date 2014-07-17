@@ -855,6 +855,14 @@ static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 	mutex_lock(&gdp_mutex);
 	kobject_put(glue_dir);
 	mutex_unlock(&gdp_mutex);
+<<<<<<< HEAD
+=======
+}
+
+static void cleanup_device_parent(struct device *dev)
+{
+	cleanup_glue_dir(dev, dev->kobj.parent);
+>>>>>>> 8f97bec... Update the Linux Base Version (3.10.49--->3.10.104)
 }
 
 static int device_add_class_symlinks(struct device *dev)
