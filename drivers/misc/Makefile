@@ -70,3 +70,4 @@ obj-y				+= qcom/
 obj-$(CONFIG_HUAWEI_DSM)	+= dsm/
 obj-$(CONFIG_HUAWEI_KSTATE) += hw_kstate/
 obj-$(CONFIG_HUAWEI_RESET_DETECT) += huawei_reset_detect/
+obj-$(CONFIG_UID_CPUTIME) += uid_cputime.o
