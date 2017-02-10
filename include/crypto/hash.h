@@ -182,7 +182,10 @@ static inline void *ahash_request_ctx(struct ahash_request *req)
 
 int crypto_ahash_setkey(struct crypto_ahash *tfm, const u8 *key,
 			unsigned int keylen);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 52e66c7... Linux 3.10.105
 static inline bool crypto_ahash_has_setkey(struct crypto_ahash *tfm)
 {
 	return tfm->has_setkey;
