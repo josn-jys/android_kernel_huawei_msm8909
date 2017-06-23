@@ -357,13 +357,10 @@ int crypto_init_shash_ops_async(struct crypto_tfm *tfm)
 
 	crt->has_setkey = alg->setkey != shash_no_setkey;
 
-<<<<<<< HEAD
 	if (alg->setkey) {
 		crt->setkey = shash_async_setkey;
 		crt->has_setkey = true;
 	}
-=======
->>>>>>> 52e66c7... Linux 3.10.105
 	if (alg->export)
 		crt->export = shash_async_export;
 	if (alg->import)
