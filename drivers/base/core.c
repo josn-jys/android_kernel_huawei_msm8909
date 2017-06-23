@@ -826,6 +826,7 @@ static struct kobject *get_device_parent(struct device *dev,
 		return &parent->kobj;
 	return NULL;
 }
+
 static inline bool live_in_glue_dir(struct kobject *kobj,
 				    struct device *dev)
 {
@@ -854,19 +855,8 @@ static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 	mutex_lock(&gdp_mutex);
 	kobject_put(glue_dir);
 	mutex_unlock(&gdp_mutex);
-<<<<<<< HEAD
-=======
 }
 
-<<<<<<< HEAD
-static void cleanup_device_parent(struct device *dev)
-{
-	cleanup_glue_dir(dev, dev->kobj.parent);
->>>>>>> 8f97bec... Update the Linux Base Version (3.10.49--->3.10.104)
-}
-
-=======
->>>>>>> cfbda43... Linux 3.10.105
 static int device_add_class_symlinks(struct device *dev)
 {
 	int error;
@@ -1029,7 +1019,6 @@ int device_add(struct device *dev)
 	struct device *parent = NULL;
 	struct kobject *kobj;
 	struct class_interface *class_intf;
-	struct kobject *glue_dir = NULL;
 	int error = -EINVAL;
 	struct kobject *glue_dir = NULL;
 
@@ -1113,13 +1102,7 @@ int device_add(struct device *dev)
 	error = dpm_sysfs_add(dev);
 	if (error)
 		goto DPMError;
-	if ((dev->pm_domain) || (dev->type && dev->type->pm)
-		|| (dev->class && (dev->class->pm || dev->class->resume))
-		|| (dev->bus && (dev->bus->pm || dev->bus->resume)) ||
-		(dev->driver && dev->driver->pm)) {
-		device_pm_add(dev);
-	}
-
+	device_pm_add(dev);
 
 	/* Notify clients of device addition.  This call must come
 	 * after dpm_sysfs_add() and before kobject_uevent().
@@ -1172,12 +1155,7 @@ done:
 	kobject_del(&dev->kobj);
  Error:
 	cleanup_glue_dir(dev, glue_dir);
-<<<<<<< HEAD
-	if (parent)
-		put_device(parent);
-=======
 	put_device(parent);
->>>>>>> 52e66c7... Linux 3.10.105
 name_error:
 	kfree(dev->p);
 	dev->p = NULL;
@@ -2080,3 +2058,4 @@ define_dev_printk_level(dev_notice, KERN_NOTICE);
 define_dev_printk_level(_dev_info, KERN_INFO);
 
 #endif
+
