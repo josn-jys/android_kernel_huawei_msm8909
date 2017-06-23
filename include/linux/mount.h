@@ -46,12 +46,8 @@ struct mnt_namespace;
 				 | MNT_NOATIME | MNT_NODIRATIME | MNT_RELATIME \
 				 | MNT_READONLY)
 
-<<<<<<< HEAD
 #define MNT_INTERNAL_FLAGS (MNT_SHARED | MNT_WRITE_HOLD | MNT_INTERNAL | \
 			    MNT_MARKED)
-=======
-#define MNT_ATIME_MASK (MNT_NOATIME | MNT_NODIRATIME | MNT_RELATIME )
->>>>>>> 8f97bec... Update the Linux Base Version (3.10.49--->3.10.104)
 
 #define MNT_INTERNAL	0x4000
 
