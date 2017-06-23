@@ -827,28 +827,6 @@ static struct kobject *get_device_parent(struct device *dev,
 	return NULL;
 }
 static inline bool live_in_glue_dir(struct kobject *kobj,
-					struct device *dev)
-{
-	if (!kobj || !dev->class ||
-	    kobj->kset != &dev->class->p->glue_dirs)
-		return false;
-	return true;
-}
-
-<<<<<<< HEAD
-static inline struct kobject *get_glue_dir(struct device *dev)
-{
-	if (live_in_glue_dir(&dev->kobj, dev))
-		return dev->kobj.parent;
-	return NULL;
-}
-/*
-* make sure cleaning up dir as the last step, we need to make
-* sure .release handler of kobject is run with holding the
-* global lock
-*/
-=======
-static inline bool live_in_glue_dir(struct kobject *kobj,
 				    struct device *dev)
 {
 	if (!kobj || !dev->class ||
@@ -867,7 +845,6 @@ static inline struct kobject *get_glue_dir(struct device *dev)
  * sure .release handler of kobject is run with holding the
  * global lock
  */
->>>>>>> 52e66c7... Linux 3.10.105
 static void cleanup_glue_dir(struct device *dev, struct kobject *glue_dir)
 {
 	/* see if we live in a "glue" directory */
