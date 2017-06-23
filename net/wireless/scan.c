@@ -55,10 +55,6 @@
  * also linked into the probe response struct.
  */
 
-<<<<<<< HEAD
-#define IEEE80211_SCAN_RESULT_EXPIRE	(3 * HZ)
-=======
-#define IEEE80211_SCAN_RESULT_EXPIRE	(7 * HZ)
 /*
  * Limit the number of BSS entries stored in mac80211. Each one is
  * a bit over 4k at most, so this limits to roughly 4-5M of memory.
@@ -71,7 +67,8 @@ static int bss_entries_limit = 1000;
 module_param(bss_entries_limit, int, 0644);
 MODULE_PARM_DESC(bss_entries_limit,
                  "limit to number of scan BSS entries (per wiphy, default 1000)");
->>>>>>> 020d1c5... Linux 3.10.105
+
+#define IEEE80211_SCAN_RESULT_EXPIRE	(30 * HZ)
 
 static void bss_free(struct cfg80211_internal_bss *bss)
 {
@@ -971,12 +968,11 @@ cfg80211_inform_bss(struct wiphy *wiphy,
 	 * override the IEs pointer should we have received an earlier
 	 * indication of Probe Response data.
 	 */
-	ies = kzalloc(sizeof(*ies) + ielen, gfp);
+	ies = kmalloc(sizeof(*ies) + ielen, gfp);
 	if (!ies)
 		return NULL;
 	ies->len = ielen;
 	ies->tsf = tsf;
-	ies->from_beacon = false;
 	memcpy(ies->data, ie, ielen);
 
 	rcu_assign_pointer(tmp.pub.beacon_ies, ies);
@@ -1029,12 +1025,11 @@ cfg80211_inform_bss_frame(struct wiphy *wiphy,
 	if (!channel)
 		return NULL;
 
-	ies = kzalloc(sizeof(*ies) + ielen, gfp);
+	ies = kmalloc(sizeof(*ies) + ielen, gfp);
 	if (!ies)
 		return NULL;
 	ies->len = ielen;
 	ies->tsf = le64_to_cpu(mgmt->u.probe_resp.timestamp);
-	ies->from_beacon = ieee80211_is_beacon(mgmt->frame_control);
 	memcpy(ies->data, mgmt->u.probe_resp.variable, ielen);
 
 	if (ieee80211_is_probe_resp(mgmt->frame_control))
@@ -1562,3 +1557,4 @@ int cfg80211_wext_giwscan(struct net_device *dev,
 }
 EXPORT_SYMBOL_GPL(cfg80211_wext_giwscan);
 #endif
+
