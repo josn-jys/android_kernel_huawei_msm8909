@@ -208,7 +208,7 @@
 		akm,layout = <0x6>;
 		akm,gpio_rstn = <&msm_gpio 36 0x0>;
 		akm,auto-report;
-		akm,pdc_file_name = "pdc_scale_al00.txt";
+		akm,pdc_file_name = "pdc_scale_mainboard.txt";
 		akm,i2c-scl-gpio = <&msm_gpio 7 0x0>;
 		akm,i2c-sda-gpio = <&msm_gpio 6 0x0>;
 	};
@@ -224,25 +224,24 @@
 		vdd-supply = <&pm8909_l17>;
 		vio-supply = <&pm8909_l6>;
 		avago,irq-gpio = <&msm_gpio 94 0x2002>;
-		avago,ps-threshold = <600>;
-		avago,ps-hysteresis-threshold = <500>;
-		avago,ps-pulse = <8>;
-		avago,ps-pgain = <0>;
-		avago,als-B = <186>;
-		avago,als-C = <75>;
-		avago,als-D = <129>;
-		avago,ga-value = <48>;
-		avago,ga-a-value = <200>;
-		avago,ga-c-value = <600>;
-		avago,ga-d-value = <180>;
+		avago,ps_threshold = <600>;
+		avago,ps_hysteresis_threshold = <500>;
+		avago,ps_pulse = <8>;
+		avago,ps_pgain = <0>;
+		avago,als_B = <1860>;
+		avago,als_C = <750>;
+		avago,als_D = <1290>;
+		avago,ga_value = <48>;
+		avago,ga_a_value = <200>;
+		avago,ga_c_value = <600>;
+		avago,ga_d_value = <180>;
 		avago,window = <95>;
 		avago,wave = <50>;
-		avago,ga-e-value = <210>;
-		avago,ga-f-value = <50>;
+		avago,ga_e_value = <210>;
+		avago,ga_f_value = <50>;
 		avago,i2c-scl-gpio = <&msm_gpio 7 0x0>;
 		avago,i2c-sda-gpio = <&msm_gpio 6 0x0>;
 	};
-
 	rpr521@38 {
 		compatible = "rohm,rpr521";
 		reg = <0x38>;
